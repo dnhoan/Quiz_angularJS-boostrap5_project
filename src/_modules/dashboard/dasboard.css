@@ -1,0 +1,41 @@
+body, nav, dropdown ,header{
+    background-color: #f7f3eb;
+}
+.menu-subject>li {
+    background-color: #f7f3eb
+}
+.navbar-nav li a {
+    color: #05192d;
+}
+.item-login {
+    background-color: #f7f3eb;
+}
+.item-login li a{
+    color: #05192d;
+}
+.list-cart>.card{
+    width: 250px ; 
+    height: 250px;
+    background-color: #05192d;
+    cursor: pointer;
+}
+.list-cart>.card:hover {
+    box-shadow: 1px 2px 3px 4px rgba(20,20,20,0.4);
+}
+.img-card{
+    color: #f7f3eb;
+    text-align: center;
+}
+.name-card {
+    color: #f7f3eb;
+}
+.list-subject ul li a {
+    text-decoration: none;
+    color: #05192d;
+}
+.list-subject ul li a:hover {
+    color: #0769ca;
+}
+footer, footer>p{
+    background-color: #05192d
+}
