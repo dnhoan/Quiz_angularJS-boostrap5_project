@@ -1,0 +1,35 @@
+body,
+nav,
+dropdown,
+header {
+	background-color: #f7f3eb;
+}
+.navbar-nav li a {
+	color: #05192d;
+}
+.item-login {
+	background-color: #f7f3eb;
+}
+a {
+	text-decoration: none;
+}
+h3 {
+	color: #f36e20;
+}
+.card {
+    border: none;
+}
+.card-header {
+    
+    background-color: #05192d;
+}
+.card-header a {
+    color: #f7f3eb;
+}
+.card-header a:hover {
+    color: #dacdb4;
+}
+.card-body {
+    background-color: #f7f3eb;
+    border: none;
+}

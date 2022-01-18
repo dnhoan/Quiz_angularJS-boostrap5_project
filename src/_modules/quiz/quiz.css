@@ -1,0 +1,45 @@
+body, nav, dropdown ,header{
+    background-color: #f7f3eb;
+}
+.menu-subject>li {
+    background-color: #f7f3eb
+}
+.navbar-nav li a {
+    color: #05192d;
+}
+.item-login {
+    background-color: #f7f3eb;
+}
+.item-login li a{
+    color: #05192d;
+}.list-subject ul li a {
+    text-decoration: none;
+    color: #05192d;
+}
+.list-subject ul li a:hover {
+    color: #0769ca;
+}
+.form-check {
+    background-color: #dddd;
+    display: flex;
+    align-items: center;
+}
+.form-check label {
+    width: 100%;
+    background-color: #dddd;
+}
+.form-check:hover,.form-check label :hover{
+    background-color: rgba(199, 197, 197, 0.867);
+}
+.page-link {
+    background-color: transparent;
+    font-weight: bold;
+    color: #05192d;
+    border: none;
+}
+.time h3 {
+    color: #f7f3eb;
+    padding: 0px 6px;
+    border-radius: 5px;
+    background-color: #05192d;
+}

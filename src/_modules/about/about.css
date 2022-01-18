@@ -1,0 +1,35 @@
+body,
+nav,
+dropdown,
+header {
+	background-color: #f7f3eb;
+}
+.navbar-nav li a {
+	color: #05192d;
+}
+.item-login {
+	background-color: #f7f3eb;
+}
+a {
+	text-decoration: none;
+}
+footer p {
+	color: #f7f3eb;
+}
+footer h4 {
+	color: #d89002;
+}
+footer .contact {
+	text-align: center;
+}
+footer a {
+	text-decoration: none;
+}
+footer,
+footer > p {
+	background-color: #05192d;
+}
+.container-footer {
+	display: flex;
+	align-items: flex-start;
+}

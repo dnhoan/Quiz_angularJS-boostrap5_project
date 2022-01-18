@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Quiz</title>
+		<link
+			rel="stylesheet"
+			href="../../../libraries/css/bootstrap.min.css"
+		/>
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="quiz.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+	</head>
+	<body>
+		<div class="container-fluid p-0">
+			<header>
+				<nav class="navbar navbar-expand-lg navbar-light">
+					<div class="container-fluid">
+						<a class="navbar-brand m-0" href="">
+							<img
+								src="../../../asset/images/logo-3.png"
+								alt=""
+							/>
+						</a>
+						<button
+							class="navbar-toggler"
+							type="button"
+							data-bs-toggle="collapse"
+							data-bs-target="#navbarSupportedContent"
+							aria-controls="navbarSupportedContent"
+							aria-expanded="false"
+							aria-label="Toggle navigation"
+						>
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div
+							class="collapse navbar-collapse"
+							id="navbarSupportedContent"
+						>
+							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+								<li class="nav-item">
+									<a
+										class="nav-link active"
+										aria-current="page"
+										href="../about/about.html"
+										><b>Giới thiệu</b></a
+									>
+								</li>
+								<li class="nav-item">
+									<a
+										class="nav-link active"
+										aria-current="page"
+										href="../contact/contact.html"
+										><b>Liên hệ</b></a
+									>
+								</li>
+								<li class="nav-item">
+									<a
+										class="nav-link active"
+										aria-current="page"
+										href="../feedback/feedback.html"
+										><b>Góp ý</b></a
+									>
+								</li>
+								<li class="nav-item">
+									<a
+										class="nav-link active"
+										aria-current="page"
+										href="../question-answer/question-answer.html"
+										><b>Hỏi đáp</b></a
+									>
+								</li>
+								<div class="dropdown">
+									<a
+										class="nav-link dropdown-toggle text-dark"
+										href=""
+										id="navbarDropdown"
+										role="button"
+										data-bs-toggle="dropdown"
+									>
+										<i class="bi bi-person-lines-fill"></i>
+										<b>Tài khoản</b>
+									</a>
+									<ul
+										class="dropdown-menu dropdown-menu-end item-login"
+									>
+										<li>
+											<a
+												class="dropdown-item"
+												href="../login/login.html"
+											>
+												<i
+													class="bi bi-box-arrow-in-left"
+												></i>
+												Đăng nhập</a
+											>
+										</li>
+										<li>
+											<a
+												class="dropdown-item"
+												href="../change-password/change-password.html"
+											>
+												<i
+													class="bi bi-exclamation-triangle-fill"
+												></i>
+												Quên mật khẩu</a
+											>
+										</li>
+										<li>
+											<a
+												class="dropdown-item"
+												href="../register/register.html"
+											>
+												<i
+													class="bi bi-box-arrow-in-left"
+												></i>
+												Đăng ký thành viên</a
+											>
+										</li>
+										<li><hr class="dropdown-divider" /></li>
+										<li>
+											<a class="dropdown-item" href="#">
+												<i
+													class="bi bi-door-open-fill"
+												></i>
+
+												Đăng xuất</a
+											>
+										</li>
+										<li>
+											<a class="dropdown-item" href="#">
+												<i
+													class="bi bi-person-square"
+												></i>
+												Cập nhật hồ sơ</a
+											>
+										</li>
+										<!-- <li><hr class="dropdown-divider" /></li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        <i
+                                            class="bi bi-cart-check-fill"
+                                        ></i>
+                                        Đơn hàng</a
+                                    >
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        <i
+                                            class="bi bi-bag-check-fill"
+                                        ></i>
+
+                                        Hàng đã mua</a
+                                    >
+                                </li> -->
+									</ul>
+								</div>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</header>
+			<div
+				class="row col-lg-9 col-md-12 content p-auto m-auto"
+				style="background-color: #f7f3eb"
+			>
+				<article
+					class="row col-xxl-9 col-lg-8 col-md-8 col-sm-12 m-auto"
+				>
+					<div
+						class="list-cart row justify-content-center p-0 pt-0 m-auto"
+					>
+						<h2 class="text-center">CSS Quiz</h2>
+                        <div class="time mt-3  d-flex justify-content-between align-items-stretch">
+							<button class="btn btn-info pt-2 pb-2"><b>Nộp bài</b></button>
+							<h3 class="d-flex align-items-center mb-0">00:00</h3>
+						</div>
+						<div class="question mt-3">
+							<h4>Question 1 of 25:</h4>
+							<h5>
+								Nước nào sau đây có đất liền thấp hơn mực nước
+								biển ?
+							</h5>
+							<div class="answer pt-3">
+								<div class="form-check p-0">
+									<input
+										type="radio"
+										class="form-check-input m-2"
+										id="answer1"
+										name="question2"
+										value="answer1"
+										checked
+									/>
+									<label
+										class="form-check-label pt-2 pb-2"
+										for="answer1"
+										>Hà Lan</label
+									>
+								</div>
+								<div class="form-check p-0">
+									<input
+										type="radio"
+										class="form-check-input m-2"
+										id="answer2"
+										name="question2"
+										value="answer2"
+									/>
+									<label
+										class="form-check-label pt-2 pb-2"
+										for="answer2"
+										>Philippine</label
+									>
+								</div>
+								<div class="form-check p-0">
+									<input
+										type="radio"
+										class="form-check-input m-2"
+										id="answer3"
+										name="question2"
+										value="answer3"
+									/>
+									<label
+										class="form-check-label pt-2 pb-2"
+										for="answer3"
+										>Italya</label
+									>
+								</div>
+								<div class="form-check p-0">
+									<input
+										type="radio"
+										class="form-check-input m-2"
+										id="answer4"
+										name="question2"
+										value="answer4"
+									/>
+									<label
+										class="form-check-label pt-2 pb-2"
+										for="answer4"
+										>Bồ Đào Nhà</label
+									>
+								</div>
+							</div>
+						</div>
+						<div class="question mt-3">
+							<h4>Question 1 of 25:</h4>
+							<h5>
+								Nước nào sau đây có đất liền thấp hơn mực nước
+								biển ?
+							</h5>
+							<div class="answer pt-3">
+								<div class="form-check p-0">
+									<input
+										type="radio"
+										class="form-check-input m-2"
+										id="answer5"
+										name="question3"
+										value="answer5"
+										checked
+									/>
+									<label
+										class="form-check-label pt-2 pb-2"
+										for="answer5"
+										>Hà Lan</label
+									>
+								</div>
+								<div class="form-check p-0">
+									<input
+										type="radio"
+										class="form-check-input m-2"
+										id="answer6"
+										name="question3"
+										value="answer6"
+									/>
+									<label
+										class="form-check-label pt-2 pb-2"
+										for="answer6"
+										>Philippine</label
+									>
+								</div>
+								<div class="form-check p-0">
+									<input
+										type="radio"
+										class="form-check-input m-2"
+										id="answer7"
+										name="question3"
+										value="answer7"
+									/>
+									<label
+										class="form-check-label pt-2 pb-2"
+										for="answer7"
+										>Italya</label
+									>
+								</div>
+								<div class="form-check p-0">
+									<input
+										type="radio"
+										class="form-check-input m-2"
+										id="answer8"
+										name="question3"
+										value="answer8"
+									/>
+									<label
+										class="form-check-label pt-2 pb-2"
+										for="answer8"
+										>Bồ Đào Nhà</label
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row pagination m-auto">
+						<nav aria-label="Page navigation example" class="p-0">
+							<ul class="pagination justify-content-center p-2">
+								<li class="page-item">
+									<a
+										class="page-link"
+										href="#"
+										aria-label="Previous"
+									>
+										<span aria-hidden="true">&laquo;</span>
+									</a>
+								</li>
+								<li class="page-item">
+									<a class="page-link" href="#">1</a>
+								</li>
+								<li class="page-item">
+									<a class="page-link" href="#">2</a>
+								</li>
+								<li class="page-item">
+									<a class="page-link" href="#">3</a>
+								</li>
+								<li class="page-item">
+									<a
+										class="page-link"
+										href="#"
+										aria-label="Next"
+									>
+										<span aria-hidden="true">&raquo;</span>
+									</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</article>
+				<aside class="col-xxl-3 col-lg-4 col-md-4 col-sm-12 pb-3">
+					<div class="card mt-3" style="background-color: #05192d">
+						<div
+							class="card-header text-white"
+							data-bs-toggle="collapse"
+							data-bs-target="#collapseExample"
+							aria-expanded="true"
+							aria-controls="collapseExample"
+						>
+							<b>Danh mục môn học</b>
+						</div>
+						<div class="list-subject collapse" id="collapseExample">
+							<ul
+								class="list-group list-group-flush menu-subject"
+							>
+								<li class="list-group-item">
+									<a href="">Kiểm thử</a>
+								</li>
+								<li class="list-group-item">
+									<a href="">SQL Server</a>
+								</li>
+								<li class="list-group-item">
+									<a href="">Điện toán đám mây</a>
+								</li>
+								<li class="list-group-item">
+									<a href="">Lập trình PHP</a>
+								</li>
+								<li class="list-group-item">
+									<a href="">Lập trình Android nâng cao</a>
+								</li>
+								<li class="list-group-item">
+									<a href="">Thiết kế Layout</a>
+								</li>
+								<li class="list-group-item">
+									<a href="">Quản lý dự án với Agile</a>
+								</li>
+								<li class="list-group-item">
+									<a href="">Internet Marketing</a>
+								</li>
+								<li class="list-group-item">
+									<a href=""
+										>Lập trình hướng đối tượng với java</a
+									>
+								</li>
+								<li class="list-group-item">
+									<a href="">Lập trình ASP.NET</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</aside>
+			</div>
+		</div>
+		<script src="../../../libraries/js/jquery.min.js"></script>
+		<script src="../../../libraries/js/popper.min.js"></script>
+		<script src="../../../libraries/js/bootstrap.min.js"></script>
+	</body>
+</html>

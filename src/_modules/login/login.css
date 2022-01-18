@@ -2,7 +2,10 @@ body,
 nav,
 dropdown,
 header {
-	background-color: #f7f3eb;
+    background-color: #f7f3eb;
+}
+a{
+    text-decoration: none;
 }
 .navbar-nav li a {
 	color: #05192d;
@@ -30,7 +33,4 @@ cursor: pointer;
 transition: .3s ease all; 
 
 } 
-a{
-    text-decoration: none;
-}
 .pass_show .ptxt:hover{color: #333333;} 

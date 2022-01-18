@@ -15,9 +15,15 @@ body, nav, dropdown ,header{
 }
 .list-cart>.card{
     width: 250px ; 
-    height: 250px;
-    background-color: #05192d;
+    height: 170px;
+    background-color: #E7E9EB;
     cursor: pointer;
+    border: none;
+    border-radius: 10px;
+}
+.list-cart>.card h4, i {
+    color: #05192d;
+
 }
 .list-cart>.card:hover {
     box-shadow: 1px 2px 3px 4px rgba(20,20,20,0.4);
@@ -50,4 +56,8 @@ footer a {
 }
 footer, footer>p{
     background-color: #05192d
+}
+.container-footer {
+    display: flex;
+    align-items: flex-start;
 }
