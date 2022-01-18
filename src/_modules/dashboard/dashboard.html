@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Dashboard</title>
+		<title>Trang chủ</title>
 		<link
 			rel="stylesheet"
 			href="../../../libraries/css/bootstrap.min.css"
@@ -28,7 +28,7 @@
 			<header>
 				<nav class="navbar navbar-expand-lg navbar-light">
 					<div class="container-fluid">
-						<a class="navbar-brand m-0" href="#">
+						<a class="navbar-brand m-0" href="">
 							<img
 								src="../../../asset/images/logo-3.png"
 								alt=""
@@ -97,7 +97,10 @@
 										class="dropdown-menu dropdown-menu-end item-login"
 									>
 										<li>
-											<a class="dropdown-item" href="#">
+											<a
+												class="dropdown-item"
+												href="../login/login.html"
+											>
 												<i
 													class="bi bi-box-arrow-in-left"
 												></i>
@@ -105,7 +108,10 @@
 											>
 										</li>
 										<li>
-											<a class="dropdown-item" href="#">
+											<a
+												class="dropdown-item"
+												href="../change-password/change-password.html"
+											>
 												<i
 													class="bi bi-exclamation-triangle-fill"
 												></i>
@@ -113,7 +119,10 @@
 											>
 										</li>
 										<li>
-											<a class="dropdown-item" href="#">
+											<a
+												class="dropdown-item"
+												href="../register/register.html"
+											>
 												<i
 													class="bi bi-box-arrow-in-left"
 												></i>
@@ -138,7 +147,7 @@
 												Cập nhật hồ sơ</a
 											>
 										</li>
-										<li><hr class="dropdown-divider" /></li>
+										<!-- <li><hr class="dropdown-divider" /></li>
 										<li>
 											<a class="dropdown-item" href="#">
 												<i
@@ -155,7 +164,7 @@
 
 												Hàng đã mua</a
 											>
-										</li>
+										</li> -->
 									</ul>
 								</div>
 							</ul>
@@ -248,7 +257,9 @@
 				style="background-color: #f7f3eb"
 			>
 				<article class="row col-lg-10 col-md-9 col-sm-12 m-auto">
-					<div class="list-cart row justify-content-center p-0 pt-0 m-auto">
+					<div
+						class="list-cart row justify-content-center p-0 pt-0 m-auto"
+					>
 						<div
 							class="card rounded-3 m-3 col-lg-3 col-sm-2 col-xs-1"
 						>
@@ -321,11 +332,8 @@
 						</div>
 					</div>
 				</article>
-				<aside class="col-lg-2 col-md-3 col-sm-12">
-					<div
-						class="card mt-3"
-						style=" background-color: #05192d"
-					>
+				<aside class="col-lg-2 col-md-3 col-sm-12 pb-3">
+					<div class="card mt-3" style="background-color: #05192d">
 						<div
 							class="card-header text-white"
 							data-bs-toggle="collapse"
@@ -339,16 +347,24 @@
 							<ul
 								class="list-group list-group-flush menu-subject"
 							>
-								<li class="list-group-item"><a href="">Kiểm thử</a></li>
-								<li class="list-group-item"><a href="">SQL Server</a></li>
+								<li class="list-group-item">
+									<a href="">Kiểm thử</a>
+								</li>
+								<li class="list-group-item">
+									<a href="">SQL Server</a>
+								</li>
 								<li class="list-group-item">
 									<a href="">Điện toán đám mây</a>
 								</li>
-								<li class="list-group-item"><a href="">Lập trình PHP</a></li>
+								<li class="list-group-item">
+									<a href="">Lập trình PHP</a>
+								</li>
 								<li class="list-group-item">
 									<a href="">Lập trình Android nâng cao</a>
 								</li>
-							<li class="list-group-item"><a href="">Thiết kế Layout</a></li>
+								<li class="list-group-item">
+									<a href="">Thiết kế Layout</a>
+								</li>
 								<li class="list-group-item">
 									<a href="">Quản lý dự án với Agile</a>
 								</li>
@@ -356,7 +372,9 @@
 									<a href="">Internet Marketing</a>
 								</li>
 								<li class="list-group-item">
-									<a href="">Lập trình hướng đối tượng với java</a>
+									<a href=""
+										>Lập trình hướng đối tượng với java</a
+									>
 								</li>
 								<li class="list-group-item">
 									<a href="">Lập trình ASP.NET</a>
@@ -367,12 +385,100 @@
 				</aside>
 			</div>
 			<footer>
-				<p class=" mb-0 mt-3" style="height: 50px">Đào Ngọc Hoan</p>
+				<div class="container-footer row">
+					<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+						<div class="row logo p-5 pb-4">
+							<img src="../../../asset/icon/5EK1lFm.png" alt="" />
+						</div>
+						<div class="row social p-5 pt-0 pb-3">
+							<div class="icon d-flex justify-content-center">
+								<img
+									class="me-2"
+									src="../../../asset/icon/ico-fb-landing.png"
+									alt=""
+								/>
+								<img
+									class="me-2"
+									src="../../../asset/icon/icon-tiktok.png"
+									alt=""
+								/>
+								<img
+									class="me-2"
+									src="../../../asset/icon/ico-youtube-landing.png"
+									alt=""
+								/>
+								<img
+									class="me-2"
+									src="../../../asset/icon/ico-wiki-landing.png"
+									alt=""
+								/>
+							</div>
+						</div>
+						<div class="row contact p-5 pt-0">
+							<h4>THÔNG TIN LIÊN HỆ</h4>
+							<p>Điện thoại: (024) 7300 1955</p>
+							<p>Email: caodang@fpt.edu.vn</p>
+						</div>
+					</div>
+					<div
+						class="row location col-lg-9 col-md-8 col-sm-6 col-xs-12"
+					>
+						<h4 class="p-3 pb-0">HỆ THỐNG VĂN PHÒNG TUYỂN SINH</h4>
+						<div class="col-lg-6 col-sm-12 col-xs-12 p-3">
+							<div class="haNoi p-2">
+								<a href="">Cơ sở Hà Nội</a> <br />
+								<p class="mb-0">
+									Văn phòng Tuyển sinh: Tòa nhà FPT
+									Polytechnic, Phố Trịnh Văn Bô, Nam Từ Liêm,
+									Hà Nội
+								</p>
+								<p>(024) 8582 0808</p>
+							</div>
+							<div class="haNoi p-2">
+								<a href="">Cơ sở Hà Nội</a> <br />
+								<p class="mb-0">
+									Văn phòng Tuyển sinh: Tòa nhà FPT
+									Polytechnic, Phố Trịnh Văn Bô, Nam Từ Liêm,
+									Hà Nội
+								</p>
+								<p>(024) 8582 0808</p>
+							</div>
+							<div class="haNoi p-2">
+								<a href="">Cơ sở Hà Nội</a> <br />
+								<p class="mb-0">
+									Văn phòng Tuyển sinh: Tòa nhà FPT
+									Polytechnic, Phố Trịnh Văn Bô, Nam Từ Liêm,
+									Hà Nội
+								</p>
+								<p>(024) 8582 0808</p>
+							</div>
+						</div>
+						<div class="col-lg-6 col-sm-12 col-xs-12 p-3">
+							<div class="haNoi p-2">
+								<a href="">Cơ sở Hà Nội</a> <br />
+								<p class="mb-0">
+									Văn phòng Tuyển sinh: Tòa nhà FPT
+									Polytechnic, Phố Trịnh Văn Bô, Nam Từ Liêm,
+									Hà Nội
+								</p>
+								<p>(024) 8582 0808</p>
+							</div>
+							<div class="haNoi p-2">
+								<a href="">Cơ sở Hà Nội</a> <br />
+								<p class="mb-0">
+									Văn phòng Tuyển sinh: Tòa nhà FPT
+									Polytechnic, Phố Trịnh Văn Bô, Nam Từ Liêm,
+									Hà Nội
+								</p>
+								<p>(024) 8582 0808</p>
+							</div>
+						</div>
+					</div>
+				</div>
 			</footer>
 		</div>
 		<script src="../../../libraries/js/jquery.min.js"></script>
 		<script src="../../../libraries/js/popper.min.js"></script>
 		<script src="../../../libraries/js/bootstrap.min.js"></script>
-		<script src="../../../libraries/js/mdb.min.js"></script>
 	</body>
 </html>

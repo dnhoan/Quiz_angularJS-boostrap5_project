@@ -36,6 +36,16 @@ body, nav, dropdown ,header{
 .list-subject ul li a:hover {
     color: #0769ca;
 }
+footer p,h4 {
+    color: #f7f3eb;
+    
+}
+footer .contact{
+    text-align: center;
+}
+footer a {
+    text-decoration: none;
+}
 footer, footer>p{
     background-color: #05192d
 }

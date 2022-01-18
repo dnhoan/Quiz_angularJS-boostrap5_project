@@ -1,0 +1,36 @@
+body,
+nav,
+dropdown,
+header {
+	background-color: #f7f3eb;
+}
+.navbar-nav li a {
+	color: #05192d;
+}.item-login {
+    background-color: #f7f3eb;
+}
+.pass_show{position: relative} 
+
+.pass_show .ptxt { 
+
+position: absolute; 
+
+top: 50%; 
+
+right: 10px; 
+
+z-index: 1; 
+
+color: #f36c01; 
+
+margin-top: -10px; 
+
+cursor: pointer; 
+
+transition: .3s ease all; 
+
+} 
+a{
+    text-decoration: none;
+}
+.pass_show .ptxt:hover{color: #333333;} 
