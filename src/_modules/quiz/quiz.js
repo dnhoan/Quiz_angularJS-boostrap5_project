@@ -3,7 +3,7 @@ app.controller(
 	function ($scope, $http, $location, $routeParams) {
 		$scope.$parent.subjects = [];
 		$scope.startIndex = 0;
-		const url = "../../db/Subjects.js";
+		const url = "./db/Subjects.js";
 		$http.get(url).then((res) => {
 			$scope.$parent.subjects = res.data;
 			$scope.$parent.currentSubject = $scope.$parent.subjects.filter(
@@ -12,16 +12,46 @@ app.controller(
 		});
 		$scope.openQuiz = (id) => {
 			$location.path(`/quiz/${id}`);
+			// $route.updateParams({ id: `${id}` });
 		};
 	}
 );
 app.controller(
 	"question",
-	($scope, $http, $location, $interval, $routeParams) => {
-		const url = `../../db/Quizs/${$routeParams.id}.js`;
+	($scope, $http, $location, $interval, $routeParams, $window) => {
+		const url = `./db/Quizs/${$routeParams.id}.js`;
 		$http.get(url).then((res) => {
 			$scope.questions = res.data.map((ques) => {
 				return { ...ques, answer_selected: null };
+			});
+			Swal.fire({
+				title: "Bạn đã sẵn sàng làm bài chưa",
+				text: "Thời gian làm bài bắt đầu?",
+				icon: "question",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Sẵn sàng",
+				cancelButtonText: "Chưa",
+			}).then((result) => {
+				console.log(result);
+				if (result.isConfirmed) {
+					$interval(() => {
+						$scope.second++;
+						if ($scope.minute == 59 && $scope.second == 59) {
+							$scope.hour++;
+							$scope.minute = 0;
+							$scope.second = 0;
+						}
+						if ($scope.second == 59) {
+							$scope.minute++;
+							$scope.second = 0;
+						}
+					}, 1000);
+				}
+				if (result.isDismissed) {
+					$window.location.href = `#/`;
+				}
 			});
 		});
 		$scope.countQuestionsSelected = 0;
@@ -129,28 +159,5 @@ app.controller(
 				});
 			});
 		};
-		Swal.fire({
-			title: "Thời gian làm bài bắt đầu?",
-			// text: "You won't be able to revert this!",
-			icon: "question",
-			confirmButtonColor: "#3085d6",
-			cancelButtonColor: "#d33",
-			confirmButtonText: "OK",
-		}).then((result) => {
-			if (result.isConfirmed) {
-				$interval(() => {
-					$scope.second++;
-					if ($scope.minute == 59 && $scope.second == 59) {
-						$scope.hour++;
-						$scope.minute = 0;
-						$scope.second = 0;
-					}
-					if ($scope.second == 59) {
-						$scope.minute++;
-						$scope.second = 0;
-					}
-				}, 1000);
-			} 
-		});
 	}
 );

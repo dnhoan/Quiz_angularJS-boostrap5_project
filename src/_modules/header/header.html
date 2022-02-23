@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light" ng-controller="menu">
 	<div class="container-fluid">
 		<a class="navbar-brand m-0" href="#/">
-			<img src="../../asset/images/logo-3.png" alt="" />
+			<img src="./asset/images/logo-3.png" alt="" />
 		</a>
 		<button
 			class="navbar-toggler"
@@ -16,7 +16,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item">
+				<li class="nav-item" ng-if="!$parent.$parent.isAdmin">
 					<a
 						class="nav-link active"
 						aria-current="page"
@@ -24,7 +24,7 @@
 						><b>Giới thiệu</b></a
 					>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item" ng-if="!$parent.$parent.isAdmin">
 					<a
 						class="nav-link active"
 						aria-current="page"
@@ -32,7 +32,7 @@
 						><b>Liên hệ</b></a
 					>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item" ng-if="!$parent.$parent.isAdmin">
 					<a
 						class="nav-link active"
 						aria-current="page"
@@ -40,7 +40,7 @@
 						><b>Góp ý</b></a
 					>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item" ng-if="!$parent.$parent.isAdmin">
 					<a
 						class="nav-link active"
 						aria-current="page"
@@ -48,6 +48,37 @@
 						><b>Hỏi đáp</b></a
 					>
 				</li>
+				<div class="dropdown" ng-if="$parent.$parent.isAdmin">
+					<a
+						class="nav-link dropdown-toggle text-dark"
+						id="navbarDropdown"
+						role="button"
+						data-bs-toggle="dropdown"
+					>
+						<i class="bi bi-person-lines-fill"></i>
+						<b>Quản lý</b>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end item-login">
+						<li>
+							<a
+								class="dropdown-item"
+								href="#/users"
+							>
+								<i class="bi bi-box-arrow-in-left"></i>
+								Quản lý người dùng</a
+							>
+						</li>
+						<li>
+							<a
+								class="dropdown-item"
+								href="#/subjects"
+							>
+								<i class="bi bi-exclamation-triangle-fill"></i>
+								Quản lý câu hỏi</a
+							>
+						</li>
+					</ul>
+				</div>
 				<div class="dropdown">
 					<a
 						class="nav-link dropdown-toggle text-dark"
@@ -60,33 +91,64 @@
 					</a>
 					<ul class="dropdown-menu dropdown-menu-end item-login">
 						<li>
-							<a class="dropdown-item" href="#/login">
+							<a
+								class="dropdown-item"
+								href="#/login"
+								ng-if="!$parent.$parent.isLogin"
+							>
 								<i class="bi bi-box-arrow-in-left"></i>
 								Đăng nhập</a
 							>
 						</li>
 						<li>
-							<a class="dropdown-item" href="#/change-password">
+							<a
+								class="dropdown-item"
+								href="#/change-password"
+								ng-if="$parent.$parent.isLogin"
+							>
 								<i class="bi bi-exclamation-triangle-fill"></i>
 								Đổi mật khẩu</a
 							>
 						</li>
+						<!-- <li>
+							<a class="dropdown-item" ng-click="getPassword()">
+								<i class="bi bi-exclamation-triangle-fill"></i>
+								Quên mật khẩu</a
+							>
+						</li> -->
 						<li>
-							<a class="dropdown-item" href="#/register">
+							<a
+								class="dropdown-item"
+								href="#/register"
+								ng-if="!$parent.$parent.isLogin"
+							>
 								<i class="bi bi-box-arrow-in-left"></i>
 								Đăng ký thành viên</a
 							>
 						</li>
-						<li><hr class="dropdown-divider" /></li>
 						<li>
-							<a class="dropdown-item" href="#/">
+							<hr
+								class="dropdown-divider"
+								ng-if="$parent.$parent.isLogin"
+							/>
+						</li>
+						<li>
+							<a
+								class="dropdown-item"
+								ng-click="logOut()"
+								ng-if="$parent.$parent.isLogin"
+							>
 								<i class="bi bi-door-open-fill"></i>
 
 								Đăng xuất</a
 							>
 						</li>
 						<li>
-							<a class="dropdown-item" href="#/account">
+							<a
+								class="dropdown-item"
+								href="#/account"
+								ng-if="$parent.$parent.isLogin"
+							>
 								<i class="bi bi-person-square"></i>
 								Cập nhật hồ sơ</a
 							>
@@ -97,4 +159,3 @@
 		</div>
 	</div>
 </nav>
-<div ng-include="'slide_banner.html'"></div>

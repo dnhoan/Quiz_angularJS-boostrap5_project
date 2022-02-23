@@ -1,4 +1,5 @@
-<div class="container-fluid p-0">
+<div class="" ng-include="'./src/_modules/dashboard/slide_banner.html'"></div>
+<div class="container-fluid p-0"  ng-if="!isAdmin">
 	<div
 		class="row col-xxl-10 col-lg-11 col-md-12 content p-auto m-auto pt-5"
 		style="background-color: #f7f3eb"
@@ -13,7 +14,7 @@
 				>
 					<div class="img-card p-3">
 						<img
-							src="../../asset/images/logos/{{subject.Logo}}"
+							src="./asset/images/logos/{{subject.Logo}}"
 							width="100%"
 						/>
 					</div>
@@ -22,7 +23,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row" ng-if="subjects.length > 8">
 				<div class="pagination d-flex justify-content-center">
 					<div class="">
 						<button class="btn m-2" ng-click="first()">
@@ -74,3 +75,4 @@
 		</aside>
 	</div>
 </div>
+<footer ng-if="isAdmin" ng-include="'./src/_modules/footer/footer.html'"></footer>

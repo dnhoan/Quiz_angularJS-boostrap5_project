@@ -1,6 +1,6 @@
 var users = [];
 var password = "";
-app.controller("form_register", ($scope, $http, $location) => {
+app.controller("form_register", ($scope, $http, $location, $window) => {
 	$(document).ready(function () {
 		$(".pass_show").append('<span class="ptxt">Show</span>');
 	});
@@ -33,19 +33,21 @@ app.controller("form_register", ($scope, $http, $location) => {
 				password: $scope.user.password,
 				fullname: "",
 				email: "",
-				gender: "",
+				gender: "1",
 				birthday: "",
-				schoolfee: 0,
+				chuyen_nganh: "",
+				address: "",
 				marks: 0,
+				isAdmin: '0'
 			};
 			$http
 				.post(`${baseUrl}/users`, data)
 				.then((res) => {
-					console.log(res);
 					{
 						Swal.fire("", "Đăng ký thành công", "success").then(
 							(result) => {
-								$location.path("/login");
+								if (result.isConfirmed)
+									$window.location.href = `#/login`;
 							}
 						);
 					}

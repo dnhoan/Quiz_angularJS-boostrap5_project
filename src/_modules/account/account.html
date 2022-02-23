@@ -1,45 +1,112 @@
-<div class="content row m-auto mt-5">
+<div class="content row m-auto mt-5 mb-5" ng-controller="info_account">
 	<div
 		class="form justify-content-center col-lg-6 col-md-7 col-sm-10 col-xs-12 p-3 m-auto"
 	>
-		<form action="" class="">
+		<form action="" class="" ng-submit="saveInfo($event, info_form)" name="info_form">
 			<h2 class="text-center pb-4"><b>Thông tin cá nhân</b></h2>
 			<div class="mb-3 d-flex align-items-center row">
-				<label for="name" class="col-sm-2 col-form-label"
+				<label for="fullname" class="col-sm-2 col-form-label"
 					>Họ và tên</label
 				>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="name" />
+					<div class="">
+						<input
+							type="text"
+							class="form-control"
+							id="fullname"
+							name="fullname"
+							ng-model="user.fullname"
+							required
+						/>
+					</div>
+					<div
+						class="text-danger"
+						ng-hide="info_form.fullname.$untouched || info_form.fullname.$valid"
+					>
+						<small ng-show="info_form.fullname.$error.required"
+							>Vui lòng nhập họ và tên</small
+						>
+					</div>
 				</div>
 			</div>
 			<div class="mb-3 d-flex align-items-center row">
 				<label for="email" class="col-sm-2 col-form-label">Email</label>
 				<div class="col-sm-10">
-					<input type="email" class="form-control" id="email" />
-				</div>
-			</div>
-			<div class="mb-3 d-flex align-items-center row">
-				<label for="masv" class="col-sm-2 col-form-label"
-					>Mã sinh viên</label
-				>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="masv" />
+					<div class="">
+						<input
+							type="email"
+							class="form-control"
+							id="email"
+							ng-model="user.email"
+							name="email"
+							required
+						/>
+					</div>
+					<div
+						ng-hide="info_form.email.$valid || info_form.email.$untouched"
+						class="text-danger"
+					>
+						<small ng-show="info_form.email.$error.required"
+							>Vui lòng nhập email</small
+						>
+						<small ng-show="info_form.email.$error.email"
+							>Không dúng định dạng email</small
+						>
+					</div>
 				</div>
 			</div>
 			<div class="mb-3 d-flex align-items-center row">
 				<label for="gender" class="col-sm-2 col-form-label"
 					>Giới tính</label
 				>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="gender" />
+				<div class="col-sm-10 row" style="margin-left: 8px">
+					<div class="form-check col-6">
+						<input
+							class="form-check-input"
+							type="radio"
+							name="gender"
+							id="male"
+							value="1"
+							ng-model="user.gender"
+						/>
+						<label class="for-check-label" for="male">Nam</label>
+					</div>
+					<div class="form-check col-6">
+						<input
+							class="form-check-input"
+							type="radio"
+							name="gender"
+							id="female"
+							value="0"
+							ng-model="user.gender"
+						/>
+						<label class="for-check-label" for="female">Nữ</label>
+					</div>
 				</div>
 			</div>
 			<div class="mb-3 d-flex align-items-center row">
-				<label for="date" class="col-sm-2 col-form-label"
+				<label for="birthday" class="col-sm-2 col-form-label"
 					>Ngày sinh</label
 				>
 				<div class="col-sm-10">
-					<input type="date" class="form-control" id="date" />
+					<div class="">
+						<input
+							type="date"
+							class="form-control"
+							id="birthday"
+							name="birthday"
+							ng-model="user.birthday"
+							required
+						/>
+					</div>
+					<div
+						ng-hide="info_form.birthday.$valid || info_form.birthday.$untouched"
+						class="text-danger"
+					>
+						<small ng-show="info_form.birthday.$error.required"
+							>Vui lòng nhập ngày sinh</small
+						>
+					</div>
 				</div>
 			</div>
 			<div class="mb-3 d-flex align-items-center row">
@@ -47,36 +114,50 @@
 					>Địa chỉ</label
 				>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="address" />
+					<div class="">
+						<textarea
+							class="form-control"
+							rows="2"
+							id="address"
+							ng-model="user.address"
+							name="address"
+							required
+						></textarea>
+					</div>
+					<div
+						ng-hide="info_form.address.$valid || info_form.address.$untouched"
+						class="text-danger"
+					>
+						<small ng-show="info_form.address.$error.required"
+							>Vui lòng nhập email</small
+						>
+					</div>
 				</div>
 			</div>
-			<div class="mb-3 d-flex align-items-center row">
-				<label for="cccd" class="col-sm-2 col-form-label"
-					>Số CCCD / CMND</label
-				>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="cccd" />
+			<div class="row mt-2">
+				<label for="chuyen_nganh" class="col-2">Chuyên ngành</label>
+				<div class="col-10">
+					<div class="">
+						<select
+							class="form-control"
+							name="chuyen_nganh"
+							ng-model="user.chuyen_nganh"
+							id="chuyen_nganh"
+							ng-options="item as item.name for item in list_chuyen_nganh track by item.id"
+							required
+						></select>
+					</div>
+					<div
+						class="text-danger"
+						ng-hide="info_form.chuyen_nganh.$untouched || info_form.chuyen_nganh.$valid"
+					>
+						<small ng-show="info_form.chuyen_nganh.$error.required">
+							Chọn chuyên ngành</small
+						>
+					</div>
 				</div>
 			</div>
-			<div class="mb-3 d-flex align-items-center row">
-				<label for="special" class="col-sm-2 col-form-label"
-					>Chuyên ngành</label
-				>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="special" />
-				</div>
-			</div>
-			<div class="mb-3 d-flex align-items-center row">
-				<label for="dateRegister" class="col-sm-2 col-form-label"
-					>Ngày đăng ký</label
-				>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="dateRegister" />
-				</div>
-			</div>
-			<button type="submit" class="btn btn-primary float-end">
-				Lưu thông tin
-			</button>
+			<button class="btn btn-primary float-end">Lưu thông tin</button>
 		</form>
 	</div>
 </div>

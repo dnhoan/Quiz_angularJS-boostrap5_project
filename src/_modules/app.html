@@ -1,50 +1,5 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="my_app">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Trang chủ</title>
-		<link rel="stylesheet" href="../../libraries/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="app.css" />
-		<link
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-			rel="stylesheet"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-		/>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/angular-css/1.0.8/angular-css.js"
-			integrity="sha512-8SmaPAPHLOpoSIVyyIUTFzxrfsrgSh+82RF5gt9WvqvTpGBGGLW8zMR96EuC1QAaQ6XfCQMLWaUVCAcJxsdIOA=="
-			crossorigin="anonymous"
-			referrerpolicy="no-referrer"
-		></script>
-		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.all.min.js"></script>
-	</head>
-	<body>
-		<div class="container-fluid p-0">
-			<header ng-include="'./header/header.html'"></header>
-			<!-- <div class="" ng-include="'./dashboard/slide_banner.html'"></div> -->
-			<ng-view></ng-view>
-			<footer ng-include="'./footer/footer.html'"></footer>
-		</div>
-		<script src="app.js"></script>
-		<script src="./dashboard/dashboard.js"></script>
-		<script src="./quiz/quiz.js"></script>
-		<script src="./login/login.js"></script>
-		<script src="./register/register.js"></script>
-		<script src="./change-password/change-password.js"></script>
-		<script src="./account/account.js"></script>
-		<script src="../../libraries/js/jquery.min.js"></script>
-		<script src="../../libraries/js/popper.min.js"></script>
-		<script src="../../libraries/js/bootstrap.min.js"></script>
-	</body>
-</html>
+<div class="container-fluid p-0" ng-controller="appCtrl">
+	<header ng-include="'./src/_modules/header/header.html'"></header>
+	<ng-view></ng-view>
+	<footer ng-if="!isAdmin" ng-include="'./src/_modules/footer/footer.html'"></footer>
+</div>

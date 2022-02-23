@@ -1,6 +1,7 @@
 <div
 	class="row col-lg-9 col-md-12 content p-auto m-auto"
 	style="background-color: #f7f3eb"
+	ng-if="$parent.isLogin"
 >
 	<article
 		class="row col-xxl-9 col-lg-8 col-md-8 col-sm-12 m-auto"
@@ -48,7 +49,9 @@
 			>
 				<h4>
 					Question {{$index + startIndex + 1}} of
-					{{questions.length}}:
+					{{questions.length}}: {{ isShowAnswer ?
+					(ques.answer_selected != null && isShowAnswer ? 'Đã làm' :
+					'Chưa làm') : ''}}
 				</h4>
 				<h5>{{ques.Text}}</h5>
 				<!-- ng-if="!isShowAnswer" -->
@@ -62,8 +65,8 @@
 							class="form-check-input m-2"
 							id="{{answer.Id}}"
 							name="{{ques.Id}}"
-							ng-model="ques.answer_selected"
 							value="{{answer.Id}}"
+							ng-model="ques.answer_selected"
 							ng-click="selectAnswer(answer.Id, ques)"
 						/>
 						<label
@@ -133,9 +136,7 @@
 						class="list-group-item"
 						ng-repeat="subject in subjects track by $index"
 					>
-						<a ng-click="openQuiz(subject.Id)"
-							>{{subject.Name}}</a
-						>
+						<a ng-click="openQuiz(subject.Id)">{{subject.Name}}</a>
 					</li>
 				</ul>
 			</div>

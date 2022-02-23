@@ -1,6 +1,4 @@
-var users = [];
-var password = "";
-app.controller("form_change_password", ($scope, $http, $location, $window) => {
+app.controller("forgot_password", ($scope, $window, $http) => {
 	$(document).ready(function () {
 		$(".pass_show").append('<span class="ptxt">Show</span>');
 	});
@@ -14,32 +12,36 @@ app.controller("form_change_password", ($scope, $http, $location, $window) => {
 				return attr == "password" ? "text" : "password";
 			});
 	});
-	// var current_user = Object.assign(
-	// 	JSON.parse($window.localStorage.getItem("user"))
-	// );
 	$scope.user = {
-		current_password: "",
 		new_password: "",
 		confirm_new_password: "",
 	};
+	$http
+		.get(`${baseUrl}users`)
+		.then((res) => {
+			users = res.data;
+		})
+		.catch((err) => {});
 	$scope.changePassword = (event, form) => {
 		event.preventDefault();
 		if (form.$valid) {
+			let user_change = users.find(
+				(user) => user.username == $scope.user.username
+			);
 			$http
-				.put(`${baseUrl}users/${current_user.id}`, {
+				.put(`${baseUrl}users/${user_change.id}`, {
 					password: $scope.user.new_password,
 				})
 				.then((res) => {
+					console.log(res);
 					{
 						Swal.fire(
 							"",
 							"Đổi mật khẩu thành công",
 							"success"
 						).then((result) => {
-							if (result.isConfirmed) {
-								$window.localStorage.removeItem("user");
+							if (result.isConfirmed)
 								$window.location.href = `#/login`;
-							}
 						});
 					}
 				})
@@ -52,6 +54,7 @@ app.controller("form_change_password", ($scope, $http, $location, $window) => {
 		password = $scope.user.new_password;
 	};
 });
+
 app.directive("checkConfirmPassword", ($http) => {
 	return {
 		require: "ngModel",

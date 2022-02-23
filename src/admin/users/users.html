@@ -1,0 +1,416 @@
+<div class="manage-users" ng-controller="list_users" ng-if="$parent.isAdmin">
+	<div class="row">
+		<!-- <div class="m-auto d-flex justify-content-end"> -->
+		<div class="d-flex justify-content-between me-3 p-3">
+			<input
+				type="text"
+				ng-model="keyWord"
+				class="form-control me-3"
+				placeholder="Tìm kiểm"
+			/>
+			<button
+				class="btn btn-primary"
+				data-bs-toggle="modal"
+				data-bs-target="#edit"
+				ng-click="showModal(null, -1)"
+			>
+				<b><i class="bi bi-plus-lg"></i></b>
+			</button>
+		</div>
+		<!-- <button
+				class="btn btn-secondary m-2 mt-0 mb-0"
+				data-bs-toggle="modal"
+				data-bs-target="#edit"
+				ng-click="showModal(null, -1)"
+			>
+				Thêm người dùng
+			</button> -->
+		<!-- </div> -->
+	</div>
+
+	<div class="list row">
+		<div class="p-4 m-auto row table-responsive">
+			<table
+				class="table col-10 table-striped table-bordered table-hover text-nowrap"
+			>
+				<thead>
+					<th>#</th>
+					<th>Tài khoản</th>
+					<th>Họ và tên</th>
+					<th>Email</th>
+					<th>Ngày sinh</th>
+					<th>Giới tính</th>
+					<th>Chuyên ngành</th>
+					<th>Vai trò</th>
+					<th>Action</th>
+				</thead>
+				<tbody>
+					<tr
+						ng-repeat="user in users | filter : keyWord | limitTo: 10 : startIndex"
+					>
+						<td>{{$index + 1}}</td>
+						<td>{{user.username}}</td>
+						<td>{{user.fullname}}</td>
+						<td>{{user.email}}</td>
+						<td>{{user.birthday | date : 'dd/MM/yyyy'}}</td>
+						<td>{{user.gender == '1' ? 'Nam' : 'Nữ'}}</td>
+						<td>{{user.chuyen_nganh.name}}</td>
+						<td>
+							{{user.isAdmin == '1' ? 'Admin' : 'Người dùng'}}
+						</td>
+						<td>
+							<div class="d-flex justify-content-left">
+								<button
+									class="btn btn-link text-danger m-1 text-decoration-none"
+									ng-click="deleteUser(user.id, $index)"
+								>
+									Xóa
+								</button>
+								<button
+									class="btn btn-link m-1 text-decoration-none"
+									data-bs-toggle="modal"
+									data-bs-target="#edit"
+									ng-click="showModal(user,$index)"
+								>
+									Edit
+								</button>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="row" ng-if="users.length > 10">
+				<div class="pagination d-flex justify-content-center">
+					<div class="">
+						<button class="btn m-2" ng-click="first()">
+							<i class="bi bi-skip-start-fill"></i>
+						</button>
+					</div>
+					<div class="">
+						<button class="btn m-2" ng-click="previous()">
+							<i class="bi bi-skip-backward-fill"></i>
+						</button>
+					</div>
+					<div class="">
+						<button class="btn m-2" ng-click="next()">
+							<i class="bi bi-skip-forward-fill"></i>
+						</button>
+					</div>
+					<div class="">
+						<button class="btn m-2" ng-click="last()">
+							<i class="bi bi-skip-end-fill"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div
+		class="modal fade"
+		id="edit"
+		tabindex="-1"
+		aria-labelledby="exampleModalLabel"
+		aria-hidden="true"
+	>
+		<div class="modal-dialog">
+			<form
+				action=""
+				name="info_form"
+				ng-submit="onSubmit($event, info_form)"
+			>
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">
+							{{isCreate ? 'Thêm người dùng': 'Sửa người dùng'}}
+						</h5>
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal"
+							aria-label="Close"
+						></button>
+					</div>
+					<div class="modal-body">
+						<div
+							class="mb-3 d-flex align-items-center row"
+							ng-if="isCreate"
+						>
+							<label for="username" class="col-sm-2 form-label"
+								>Tài khoản</label
+							>
+							<div class="col-sm-10">
+								<div class="">
+									<input
+										type="text"
+										class="form-control"
+										id="username"
+										name="username"
+										required
+										ng-model="user_info.username"
+										ng-model-options="{updateOn: 'blur'}"
+										check-username-exist
+									/>
+								</div>
+								<div
+									class="text-danger"
+									ng-hide="info_form.username.$untouched || info_form.username.$valid"
+								>
+									<small
+										ng-show="info_form.username.$error.required"
+									>
+										Vui lòng nhập tài khoản
+									</small>
+									<small
+										ng-show="info_form.username.$error.check_username_exist"
+									>
+										Tài khoản này đã tồn tại
+									</small>
+								</div>
+							</div>
+						</div>
+						<div
+							class="mb-3 d-flex align-items-center row"
+							ng-if="isCreate"
+						>
+							<label for="pwd" class="col-sm-2 col-form-label"
+								>Mật khẩu</label
+							>
+							<div class="form-group col-sm-10">
+								<div class="pass_show">
+									<input
+										type="password"
+										name="password"
+										class="form-control"
+										ng-model="user_info.password"
+										required
+										ng-model-options="{updateOn: 'blur'}"
+									/>
+								</div>
+								<div
+									class="text-danger"
+									ng-hide="info_form.password.$untouched || info_form.password.$valid"
+								>
+									<small
+										ng-show="info_form.password.$error.required"
+									>
+										Vui lòng nhập mật khẩu
+									</small>
+								</div>
+							</div>
+						</div>
+						<div class="mb-3 d-flex align-items-center row">
+							<label
+								for="fullname"
+								class="col-sm-2 col-form-label"
+								>Họ và tên</label
+							>
+							<div class="col-sm-10">
+								<div class="">
+									<input
+										type="text"
+										class="form-control"
+										id="fullname"
+										name="fullname"
+										ng-model="user_info.fullname"
+										required
+									/>
+								</div>
+								<div
+									class="text-danger"
+									ng-hide="info_form.fullname.$untouched || info_form.fullname.$valid"
+								>
+									<small
+										ng-show="info_form.fullname.$error.required"
+										>Vui lòng nhập họ và tên</small
+									>
+								</div>
+							</div>
+						</div>
+						<div class="mb-3 d-flex align-items-center row">
+							<label for="email" class="col-sm-2 col-form-label"
+								>Email</label
+							>
+							<div class="col-sm-10">
+								<div class="">
+									<input
+										type="email"
+										class="form-control"
+										id="email"
+										ng-model="user_info.email"
+										name="email"
+										required
+									/>
+								</div>
+								<div
+									ng-hide="info_form.email.$valid || info_form.email.$untouched"
+									class="text-danger"
+								>
+									<small
+										ng-show="info_form.email.$error.required"
+										>Vui lòng nhập email</small
+									>
+									<small
+										ng-show="info_form.email.$error.email"
+										>Không dúng định dạng email</small
+									>
+								</div>
+							</div>
+						</div>
+						<div class="mb-3 d-flex align-items-center row">
+							<label for="gender" class="col-sm-2 col-form-label"
+								>Giới tính</label
+							>
+							<div class="col-sm-10 row" style="margin-left: 8px">
+								<div class="form-check col-6">
+									<input
+										class="form-check-input"
+										type="radio"
+										name="gender"
+										id="male"
+										value="1"
+										ng-model="user_info.gender"
+									/>
+									<label class="for-check-label" for="male"
+										>Nam</label
+									>
+								</div>
+								<div class="form-check col-6">
+									<input
+										class="form-check-input"
+										type="radio"
+										name="gender"
+										id="female"
+										value="0"
+										ng-model="user_info.gender"
+									/>
+									<label class="for-check-label" for="female"
+										>Nữ</label
+									>
+								</div>
+							</div>
+						</div>
+						<div class="mb-3 d-flex align-items-center row">
+							<label
+								for="birthday"
+								class="col-sm-2 col-form-label"
+								>Ngày sinh</label
+							>
+							<div class="col-sm-10">
+								<div class="">
+									<input
+										type="date"
+										class="form-control"
+										id="birthday"
+										name="birthday"
+										ng-model="user_info.birthday"
+										required
+									/>
+								</div>
+								<div
+									ng-hide="info_form.birthday.$valid || info_form.birthday.$untouched"
+									class="text-danger"
+								>
+									<small
+										ng-show="info_form.birthday.$error.required"
+										>Vui lòng nhập ngày sinh</small
+									>
+								</div>
+							</div>
+						</div>
+						<div class="mb-3 d-flex align-items-center row">
+							<label for="address" class="col-sm-2 col-form-label"
+								>Địa chỉ</label
+							>
+							<div class="col-sm-10">
+								<div class="">
+									<textarea
+										class="form-control"
+										rows="2"
+										id="address"
+										ng-model="user_info.address"
+										name="address"
+										required
+									></textarea>
+								</div>
+								<div
+									ng-hide="info_form.address.$valid || info_form.address.$untouched"
+									class="text-danger"
+								>
+									<small
+										ng-show="info_form.address.$error.required"
+										>Vui lòng nhập email</small
+									>
+								</div>
+							</div>
+						</div>
+						<div class="row mt-2">
+							<label for="chuyen_nganh" class="col-sm-2"
+								>Chuyên ngành</label
+							>
+							<div class="col-sm-10">
+								<div class="">
+									<select
+										class="form-control"
+										name="chuyen_nganh"
+										ng-model="user_info.chuyen_nganh"
+										id="chuyen_nganh"
+										ng-options="item as item.name for item in list_chuyen_nganh track by item.id"
+										required
+									></select>
+								</div>
+								<div
+									class="text-danger"
+									ng-hide="info_form.chuyen_nganh.$untouched || info_form.chuyen_nganh.$valid"
+								>
+									<small
+										ng-show="info_form.chuyen_nganh.$error.required"
+									>
+										Chọn chuyên ngành</small
+									>
+								</div>
+							</div>
+						</div>
+						<div class="mb-3 d-flex align-items-center row">
+							<label for="role" class="col-sm-2 col-form-label"
+								>Vai trò</label
+							>
+							<div class="col-sm-10 row" style="margin-left: 8px">
+								<div class="form-check col-6">
+									<input
+										class="form-check-input"
+										type="radio"
+										name="role"
+										id="admin"
+										value="1"
+										ng-model="user_info.isAdmin"
+									/>
+									<label class="for-check-label" for="admin"
+										>Admin</label
+									>
+								</div>
+								<div class="form-check col-6">
+									<input
+										class="form-check-input"
+										type="radio"
+										name="role"
+										id="normal"
+										value="0"
+										ng-model="user_info.isAdmin"
+									/>
+									<label class="for-check-label" for="normal"
+										>Người dùng</label
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-primary" data-bs-dismiss="modal">
+							Lưu
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
