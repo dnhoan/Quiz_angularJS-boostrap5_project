@@ -12,13 +12,22 @@ app.controller(
 		});
 		$scope.openQuiz = (id) => {
 			$location.path(`/quiz/${id}`);
-			// $route.updateParams({ id: `${id}` });
 		};
 	}
 );
 app.controller(
 	"question",
-	($scope, $http, $location, $interval, $routeParams, $window) => {
+	(
+		$scope,
+		$http,
+		$location,
+		$interval,
+		$routeParams,
+		$rootScope,
+		$window
+	) => {
+		console.log($rootScope);
+		console.log($scope.$parent);
 		const url = `./db/Quizs/${$routeParams.id}.js`;
 		$http.get(url).then((res) => {
 			$scope.questions = res.data.map((ques) => {
@@ -50,7 +59,7 @@ app.controller(
 					}, 1000);
 				}
 				if (result.isDismissed) {
-					$window.location.href = `#/`;
+					$location.path("login");
 				}
 			});
 		});
@@ -65,7 +74,7 @@ app.controller(
 				confirmButtonColor: "#3085d6",
 				cancelButtonColor: "#d33",
 				confirmButtonText: "Yes",
-			}).then((result) => {
+			}).then(async (result) => {
 				if (result.isConfirmed) {
 					let question_right = $scope.questions.filter(
 						(ques) => ques.AnswerId == ques.answer_selected
@@ -82,6 +91,28 @@ app.controller(
 						$scope.second +
 						($scope.minute > 0 ? $scope.minute * 60 : 0) +
 						($scope.hour > 0 ? $scope.hour * 3600 : 0);
+					let history = {
+						id_subject: $scope.$parent.currentSubject.Id,
+						name_subject: $scope.$parent.currentSubject.Name,
+						time,
+						mark,
+						right_answer: question_right,
+						total_answer: $scope.questions.length,
+						false_answer: $scope.questions.length - question_right,
+						ctime: new Date(),
+					};
+					$rootScope.current_user.history.unshift(history);
+					await $http
+						.put(`${baseUrl}users/${$rootScope.current_user.id}`, {
+							history: $rootScope.current_user.history,
+						})
+						.then((res) => {
+							$window.localStorage.removeItem("user");
+							$window.localStorage.setItem(
+								"user",
+								JSON.stringify($rootScope.current_user)
+							);
+						});
 					Swal.fire({
 						title: `Bạn được ${mark} điểm`,
 						text: alert,

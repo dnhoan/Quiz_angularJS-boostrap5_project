@@ -16,7 +16,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item" ng-if="!$parent.$parent.isAdmin">
+				<li class="nav-item" ng-if="!isAdmin">
 					<a
 						class="nav-link active"
 						aria-current="page"
@@ -24,7 +24,7 @@
 						><b>Giới thiệu</b></a
 					>
 				</li>
-				<li class="nav-item" ng-if="!$parent.$parent.isAdmin">
+				<li class="nav-item" ng-if="!isAdmin">
 					<a
 						class="nav-link active"
 						aria-current="page"
@@ -32,7 +32,7 @@
 						><b>Liên hệ</b></a
 					>
 				</li>
-				<li class="nav-item" ng-if="!$parent.$parent.isAdmin">
+				<li class="nav-item" ng-if="!isAdmin">
 					<a
 						class="nav-link active"
 						aria-current="page"
@@ -40,7 +40,7 @@
 						><b>Góp ý</b></a
 					>
 				</li>
-				<li class="nav-item" ng-if="!$parent.$parent.isAdmin">
+				<li class="nav-item" ng-if="!isAdmin">
 					<a
 						class="nav-link active"
 						aria-current="page"
@@ -48,7 +48,7 @@
 						><b>Hỏi đáp</b></a
 					>
 				</li>
-				<div class="dropdown" ng-if="$parent.$parent.isAdmin">
+				<div class="dropdown" ng-if="isAdmin">
 					<a
 						class="nav-link dropdown-toggle text-dark"
 						id="navbarDropdown"
@@ -60,19 +60,13 @@
 					</a>
 					<ul class="dropdown-menu dropdown-menu-end item-login">
 						<li>
-							<a
-								class="dropdown-item"
-								href="#/users"
-							>
+							<a class="dropdown-item" href="#/users">
 								<i class="bi bi-box-arrow-in-left"></i>
 								Quản lý người dùng</a
 							>
 						</li>
 						<li>
-							<a
-								class="dropdown-item"
-								href="#/subjects"
-							>
+							<a class="dropdown-item" href="#/subjects">
 								<i class="bi bi-exclamation-triangle-fill"></i>
 								Quản lý câu hỏi</a
 							>
@@ -94,7 +88,7 @@
 							<a
 								class="dropdown-item"
 								href="#/login"
-								ng-if="!$parent.$parent.isLogin"
+								ng-if="!isLogin"
 							>
 								<i class="bi bi-box-arrow-in-left"></i>
 								Đăng nhập</a
@@ -103,8 +97,30 @@
 						<li>
 							<a
 								class="dropdown-item"
+								ng-if="!isLogin"
+								ng-click="sendEmail()"
+							>
+								<i class="bi bi-arrow-clockwise"></i>
+								Lấy lại mật khẩu</a
+							>
+						</li>
+
+						<li>
+							<a
+								class="dropdown-item"
+								ng-if="isLogin && !isAdmin"
+								data-bs-toggle="modal"
+								data-bs-target="#myModal"
+							>
+								<i class="bi bi-clock-history"></i>
+								Lịch sử làm bài</a
+							>
+						</li>
+						<li>
+							<a
+								class="dropdown-item"
 								href="#/change-password"
-								ng-if="$parent.$parent.isLogin"
+								ng-if="isLogin"
 							>
 								<i class="bi bi-exclamation-triangle-fill"></i>
 								Đổi mật khẩu</a
@@ -120,23 +136,20 @@
 							<a
 								class="dropdown-item"
 								href="#/register"
-								ng-if="!$parent.$parent.isLogin"
+								ng-if="!isLogin"
 							>
 								<i class="bi bi-box-arrow-in-left"></i>
 								Đăng ký thành viên</a
 							>
 						</li>
 						<li>
-							<hr
-								class="dropdown-divider"
-								ng-if="$parent.$parent.isLogin"
-							/>
+							<hr class="dropdown-divider" ng-if="isLogin" />
 						</li>
 						<li>
 							<a
 								class="dropdown-item"
 								ng-click="logOut()"
-								ng-if="$parent.$parent.isLogin"
+								ng-if="isLogin"
 							>
 								<i class="bi bi-door-open-fill"></i>
 
@@ -147,7 +160,7 @@
 							<a
 								class="dropdown-item"
 								href="#/account"
-								ng-if="$parent.$parent.isLogin"
+								ng-if="isLogin"
 							>
 								<i class="bi bi-person-square"></i>
 								Cập nhật hồ sơ</a
@@ -159,3 +172,63 @@
 		</div>
 	</div>
 </nav>
+<div class="modal" id="myModal">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4>Lịch sử làm bài thi</h4>
+				<button
+					class="btn-close"
+					type="button"
+					data-bs-dismiss="modal"
+				></button>
+			</div>
+
+			<div class="modal-body">
+				<table class="table">
+					<thead>
+						<th>Mã môn</th>
+						<th>Tên môn</th>
+						<th>Thời gian hoàn thành</th>
+						<th>Thời gian làm bài</th>
+						<th>Số câu đúng</th>
+						<th>Điểm</th>
+						<th>Trạng thái</th>
+					</thead>
+					<tbody>
+						<tr
+							ng-repeat="his in current_user.history track by $index"
+						>
+							<td style="text-align: center">
+								{{his.id_subject}}
+							</td>
+							<td>{{his.name_subject}}</td>
+							<td style="text-align: center">{{his.time }} s</td>
+							<td>{{his.ctime | date : 'hh:mm:ss dd/MM/y' }}</td>
+							<td style="text-align: center">
+								{{his.right_answer}}/{{his.total_answer}}
+							</td>
+							<td style="text-align: center">
+								{{his.mark | number : 2}}
+							</td>
+							<td style="text-align: center">
+								<p>
+									<b
+										ng-if="his.mark >=5 "
+										style="color: rgb(25, 187, 38)"
+									>
+										Đạt
+									</b>
+									<b ng-if="his.mark < 5 " style="color: red">
+										Trượt
+									</b>
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- <div class="modal-footer"></div> -->
+		</div>
+	</div>
+</div>

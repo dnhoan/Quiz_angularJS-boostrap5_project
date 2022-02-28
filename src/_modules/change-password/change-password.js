@@ -1,6 +1,6 @@
 var users = [];
 var password = "";
-app.controller("form_change_password", ($scope, $http, $location, $window) => {
+app.controller("form_change_password", ($scope, $http, $location, $window,$rootScope) => {
 	$(document).ready(function () {
 		$(".pass_show").append('<span class="ptxt">Show</span>');
 	});
@@ -14,9 +14,6 @@ app.controller("form_change_password", ($scope, $http, $location, $window) => {
 				return attr == "password" ? "text" : "password";
 			});
 	});
-	// var current_user = Object.assign(
-	// 	JSON.parse($window.localStorage.getItem("user"))
-	// );
 	$scope.user = {
 		current_password: "",
 		new_password: "",
@@ -26,10 +23,11 @@ app.controller("form_change_password", ($scope, $http, $location, $window) => {
 		event.preventDefault();
 		if (form.$valid) {
 			$http
-				.put(`${baseUrl}users/${current_user.id}`, {
+				.put(`${baseUrl}users/${$rootScope.current_user.id}`, {
 					password: $scope.user.new_password,
 				})
 				.then((res) => {
+					$location.path("login");
 					{
 						Swal.fire(
 							"",
@@ -38,7 +36,6 @@ app.controller("form_change_password", ($scope, $http, $location, $window) => {
 						).then((result) => {
 							if (result.isConfirmed) {
 								$window.localStorage.removeItem("user");
-								$window.location.href = `#/login`;
 							}
 						});
 					}

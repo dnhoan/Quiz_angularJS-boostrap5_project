@@ -1,20 +1,16 @@
 // const app = angular.module("dashboard", ["ngRoute"]);
-app.controller("subjectsCtrl1", ($scope, $http, $window, $route) => {
+app.controller("subjectsCtrl1", ($scope, $http, $window, $route, $location, $rootScope) => {
 	$scope.subjects = [];
-	
+
 	const url = "./db/Subjects.js";
 	$http.get(url).then((res) => {
 		$scope.subjects = res.data;
 	});
 	$scope.openQuiz = (id) => {
-		// $route.updateParams({id: `${id}`})
-		if ($scope.$parent.$parent.isLogin)
-			$window.location.href = `#/quiz/${id}`;
+		if ($rootScope.isLogin) $location.path(`quiz/${id}`);
 		else {
 			Swal.fire("", "Vui lòng đăng nhập", "info").then((result) => {
 				if (result.isConfirmed) {
-					// if(user_login)
-					$window.location.href = "#/login";
 				}
 			});
 		}

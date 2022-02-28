@@ -38,16 +38,16 @@ app.controller("form_register", ($scope, $http, $location, $window) => {
 				chuyen_nganh: "",
 				address: "",
 				marks: 0,
-				isAdmin: '0'
+				isAdmin: "0",
 			};
 			$http
 				.post(`${baseUrl}/users`, data)
 				.then((res) => {
+					$location.path("login");
 					{
 						Swal.fire("", "Đăng ký thành công", "success").then(
 							(result) => {
-								if (result.isConfirmed)
-									$window.location.href = `#/login`;
+								
 							}
 						);
 					}
@@ -83,6 +83,7 @@ app.directive("checkUsernameExist", ($http) => {
 		},
 	};
 });
+
 app.directive("checkConfirmPassword", ($http) => {
 	return {
 		require: "ngModel",

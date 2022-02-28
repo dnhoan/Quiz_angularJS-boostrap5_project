@@ -1,4 +1,4 @@
-<div class="manage-users" ng-controller="list_users" ng-if="$parent.isAdmin">
+<div class="manage-users" ng-controller="list_users" ng-if="isAdmin">
 	<div class="row">
 		<!-- <div class="m-auto d-flex justify-content-end"> -->
 		<div class="d-flex justify-content-between me-3 p-3">
@@ -27,7 +27,6 @@
 			</button> -->
 		<!-- </div> -->
 	</div>
-
 	<div class="list row">
 		<div class="p-4 m-auto row table-responsive">
 			<table
@@ -239,6 +238,7 @@
 										ng-model="user_info.email"
 										name="email"
 										required
+										check-email-exist
 									/>
 								</div>
 								<div
@@ -253,6 +253,11 @@
 										ng-show="info_form.email.$error.email"
 										>Không dúng định dạng email</small
 									>
+									<small
+										ng-show="info_form.email.$error.check_email_exist"
+									>
+										Email này đã được đăng ký
+									</small>
 								</div>
 							</div>
 						</div>

@@ -2,7 +2,12 @@
 	<div
 		class="form justify-content-center col-lg-6 col-md-7 col-sm-10 col-xs-12 p-3 m-auto"
 	>
-		<form action="" class="" ng-submit="saveInfo($event, info_form)" name="info_form">
+		<form
+			action=""
+			class=""
+			ng-submit="saveInfo($event, info_form)"
+			name="info_form"
+		>
 			<h2 class="text-center pb-4"><b>Thông tin cá nhân</b></h2>
 			<div class="mb-3 d-flex align-items-center row">
 				<label for="fullname" class="col-sm-2 col-form-label"
@@ -40,6 +45,7 @@
 							ng-model="user.email"
 							name="email"
 							required
+							check-email-exist
 						/>
 					</div>
 					<div
@@ -52,6 +58,11 @@
 						<small ng-show="info_form.email.$error.email"
 							>Không dúng định dạng email</small
 						>
+						<small
+							ng-show="info_form.email.$error.check_email_exist"
+						>
+							Email này đã được đăng ký
+						</small>
 					</div>
 				</div>
 			</div>

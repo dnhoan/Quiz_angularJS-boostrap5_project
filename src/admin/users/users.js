@@ -1,6 +1,5 @@
-app.controller("usersCtrl", ($scope) => {});
-app.controller("form_user", ($scope) => {});
-app.controller("list_users", ($scope, $http, $window) => {
+var users = [];
+app.controller("list_users", ($scope, $http, $window, $rootScope) => {
 	$(document).ready(function () {
 		$(".pass_show").append('<span class="ptxt">Show</span>');
 	});
@@ -15,13 +14,12 @@ app.controller("list_users", ($scope, $http, $window) => {
 			});
 	});
 	$scope.users = [];
-	$scope.current_user = JSON.parse($window.localStorage.getItem("user"));
 	$http
 		.get(`${baseUrl}users`)
 		.then((res) => {
 			console.log(res);
 			$scope.users = res.data.filter(
-				(u) => u.id != $scope.current_user.id
+				(u) => u.id != $rootScope.current_user.id
 			);
 			console.log($scope.users);
 		})
@@ -114,11 +112,13 @@ app.controller("list_users", ($scope, $http, $window) => {
 			});
 	};
 	$scope.showModal = (user, index) => {
+		users = [...$scope.users];
 		if (user != null) {
 			$scope.isCreate = false;
 			$scope.index_user_edit = index;
 			$scope.user_info = { ...user };
 		} else {
+			users.push($rootScope.current_user);
 			$scope.isCreate = true;
 			$scope.index_user_edit = -1;
 			$scope.user_info = {
@@ -160,48 +160,5 @@ app.controller("list_users", ($scope, $http, $window) => {
 		$scope.startIndex =
 			$scope.users.length -
 			($scope.users.length % 10 == 0 ? 10 : $scope.users.length % 10);
-	};
-});
-
-app.directive("checkUsernameExist", ($http) => {
-	return {
-		require: "ngModel",
-		link: (scope, element, attr, mCtrl) => {
-			const fnValidate = (value) => {
-				let isInValid = true;
-				if (value != null) {
-					if (
-						users.filter((user) => user.username == value).length >
-						0
-					) {
-						isInValid = false;
-					}
-				}
-				console.log("sau");
-				mCtrl.$setValidity("check_username_exist", isInValid);
-				return value;
-			};
-			mCtrl.$parsers.push(fnValidate);
-		},
-	};
-});
-app.directive("checkConfirmPassword", ($http) => {
-	return {
-		require: "ngModel",
-		link: (scope, element, attr, mCtrl) => {
-			const fnValidate = (value) => {
-				let isInValid = true;
-				if (value != null) {
-					if (value != password) {
-						isInValid = false;
-					}
-				} else {
-					isInValid = true;
-				}
-				mCtrl.$setValidity("check_confirm_password", isInValid);
-				return value;
-			};
-			mCtrl.$parsers.push(fnValidate);
-		},
 	};
 });

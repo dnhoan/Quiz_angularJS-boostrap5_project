@@ -14,7 +14,6 @@ app.controller(
 					return attr == "password" ? "text" : "password";
 				});
 		});
-		console.log($scope);
 
 		$scope.user = {
 			username: "",
@@ -39,11 +38,12 @@ app.controller(
 										JSON.stringify(user_login)
 									);
 									if (user_login.isAdmin == "1") {
-										$scope.$parent.$parent.isAdmin = true;
+										$rootScope.isAdmin = true;
 									}
-									$scope.$parent.$parent.isLogin = true;
-									// if(user_login)
+									$rootScope.current_user = user_login;
+									$rootScope.isLogin = true;
 									$window.location.href = "#/";
+									// $location.path("/");
 								}
 							}
 						);
@@ -58,17 +58,6 @@ app.controller(
 				.catch((err) => {
 					Swal.fire("", "Đăng nhập lỗi", "error");
 				});
-		};
-		$scope.changePassword = () => {
-			Swal.fire({
-				title: "Nhập địa chỉ email",
-				input: "email",
-				inputLabel: "Nhập email trong tài khoản của bạn",
-				inputPlaceholder: "Nhập email",
-			}).then((result) => {
-				if (result.isConfirmed)
-					$window.location.href = `#/forgot-password`;
-			});
 		};
 	}
 );
