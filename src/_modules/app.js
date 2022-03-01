@@ -104,13 +104,16 @@ app.config(function ($routeProvider) {
 			templateUrl: "./src/admin/users/users.html",
 			css: "./src/admin/users/users.css",
 		})
+		.when("/questions", {
+			templateUrl: "./src/admin/questions/questions.html",
+			css: "./src/admin/questions/questions.css",
+		})
 		.when("/subjects", {
 			templateUrl: "./src/admin/subjects/subjects.html",
 			css: "./src/admin/subjects/subjects.css",
 		})
 		.when("/", {
 			templateUrl: "./src/_modules/dashboard/dashboard.html",
-			// css: "./src/_modules/dashboard/dashboard.css",
 		})
 		.otherwise({
 			redirectTo: "/",

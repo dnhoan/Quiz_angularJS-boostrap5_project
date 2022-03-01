@@ -4,10 +4,10 @@ app.controller(
 		$scope.$parent.subjects = [];
 		$scope.startIndex = 0;
 		const url = "./db/Subjects.js";
-		$http.get(url).then((res) => {
+		$http.get(`${baseUrl}subjects`).then((res) => {
 			$scope.$parent.subjects = res.data;
 			$scope.$parent.currentSubject = $scope.$parent.subjects.filter(
-				(sub) => sub.Id == $routeParams.id
+				(sub) => sub.id == $routeParams.id
 			)[0];
 		});
 		$scope.openQuiz = (id) => {
@@ -28,40 +28,42 @@ app.controller(
 	) => {
 		console.log($rootScope);
 		console.log($scope.$parent);
-		const url = `./db/Quizs/${$routeParams.id}.js`;
-		$http.get(url).then((res) => {
-			$scope.questions = res.data.map((ques) => {
-				return { ...ques, answer_selected: null };
-			});
-			Swal.fire({
-				title: "Bạn đã sẵn sàng làm bài chưa",
-				text: "Thời gian làm bài bắt đầu?",
-				icon: "question",
-				showCancelButton: true,
-				confirmButtonColor: "#3085d6",
-				cancelButtonColor: "#d33",
-				confirmButtonText: "Sẵn sàng",
-				cancelButtonText: "Chưa",
-			}).then((result) => {
-				console.log(result);
-				if (result.isConfirmed) {
-					$interval(() => {
-						$scope.second++;
-						if ($scope.minute == 59 && $scope.second == 59) {
-							$scope.hour++;
-							$scope.minute = 0;
-							$scope.second = 0;
-						}
-						if ($scope.second == 59) {
-							$scope.minute++;
-							$scope.second = 0;
-						}
-					}, 1000);
-				}
-				if (result.isDismissed) {
-					$location.path("login");
-				}
-			});
+		$http.get(`${baseUrl}questions/${$routeParams.id}`).then((res) => {
+			if (res.data.questions.length > 0) {
+				$scope.questions = res.data.questions.map((ques) => {
+					return { ...ques, answer_selected: null };
+				});
+				Swal.fire({
+					title: "Bạn đã sẵn sàng làm bài chưa",
+					text: "Thời gian làm bài bắt đầu?",
+					icon: "question",
+					showCancelButton: true,
+					confirmButtonColor: "#3085d6",
+					cancelButtonColor: "#d33",
+					confirmButtonText: "Sẵn sàng",
+					cancelButtonText: "Chưa",
+				}).then((result) => {
+					console.log(result);
+					if (result.isConfirmed) {
+						$interval(() => {
+							$scope.second++;
+							if ($scope.minute == 59 && $scope.second == 59) {
+								$scope.hour++;
+								$scope.minute = 0;
+								$scope.second = 0;
+							}
+							if ($scope.second == 59) {
+								$scope.minute++;
+								$scope.second = 0;
+							}
+						}, 1000);
+					}
+					if (result.isDismissed) {
+						$location.path("");
+					}
+				});
+			} else {
+			}
 		});
 		$scope.countQuestionsSelected = 0;
 		$scope.isShowAnswer = false;
@@ -82,7 +84,7 @@ app.controller(
 					let mark =
 						Math.round(
 							(question_right / $scope.questions.length) * 100
-						) / 100;
+						) / 10;
 					let alert =
 						mark >= 5
 							? "Xin chúc mừng bạn đã vượt qua bài thi"
@@ -116,7 +118,7 @@ app.controller(
 					Swal.fire({
 						title: `Bạn được ${mark} điểm`,
 						text: alert,
-						html: `<p>Xin chia buồn bạn đã bị trượt</p><br><b>Thời gian: ${time} giây</b>`,
+						html: `<p> ${alert} </p><br><b>Thời gian: ${time} giây</b>`,
 						icon: mark >= 5 ? "success" : "error",
 						showDenyButton: true,
 						showCancelButton: true,
@@ -184,8 +186,8 @@ app.controller(
 			$scope.startIndex = 0;
 			$scope.countQuestionsSelected = 0;
 			$scope.isShowAnswer = false;
-			$http.get(url).then((res) => {
-				$scope.questions = res.data.map((ques) => {
+			$http.get(`${baseUrl}questions/${$routeParams.id}`).then((res) => {
+				$scope.questions = res.data.questions.map((ques) => {
 					return { ...ques, answer_selected: null };
 				});
 			});

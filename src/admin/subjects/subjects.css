@@ -1,57 +1,31 @@
-body,
-nav,
-dropdown,
-header {
-	background-color: #f7f3eb;
-}
-.menu-subject > li {
-	background-color: #f7f3eb;
-}
+
 .navbar-nav li a {
 	color: #05192d;
+}.item-login {
+    background-color: #f7f3eb;
 }
-.item-login {
-	background-color: #f7f3eb;
+.pass_show{position: relative} 
+
+.pass_show .ptxt { 
+
+position: absolute; 
+
+top: 50%; 
+
+right: 10px; 
+
+z-index: 1; 
+
+color: #f36c01; 
+
+margin-top: -10px; 
+
+cursor: pointer; 
+
+transition: .3s ease all; 
+
+} 
+a{
+    text-decoration: none;
 }
-.item-login li a {
-	color: #05192d;
-}
-.list-cart > .card {
-	width: 250px;
-	height: 350px;
-	/* background-color: #e7e9eb; */
-	cursor: pointer;
-	border: none;
-	border-radius: 10px;
-}
-.list-cart > .card h4,
-i {
-	color: #05192d;
-}
-.list-cart > .card:hover {
-	box-shadow: 1px 2px 3px 4px rgba(20, 20, 20, 0.4);
-}
-.img-card {
-	color: #f7f3eb;
-	text-align: center;
-}
-.name-card {
-	color: #f7f3eb;
-}
-.list-subject ul li a {
-	text-decoration: none;
-	color: #05192d;
-}
-.list-subject ul li a:hover {
-	color: #0769ca;
-}
-.page-link {
-	background-color: transparent;
-	font-weight: bold;
-	color: #05192d;
-	border: none;
-}
-.form-check-input[type=radio] {
-	width: 25px;
-	height: 25px;
-}
+.pass_show .ptxt:hover{color: #333333;} 

@@ -1,9 +1,7 @@
 // const app = angular.module("dashboard", ["ngRoute"]);
 app.controller("subjectsCtrl1", ($scope, $http, $window, $route, $location, $rootScope) => {
 	$scope.subjects = [];
-
-	const url = "./db/Subjects.js";
-	$http.get(url).then((res) => {
+	$http.get(`${baseUrl}subjects`).then((res) => {
 		$scope.subjects = res.data;
 	});
 	$scope.openQuiz = (id) => {
