@@ -62,58 +62,58 @@ app.controller("appCtrl", ($window, $http, $rootScope) => {
 app.config(function ($routeProvider) {
 	$routeProvider
 		.when("/about", {
-			templateUrl: "./src/_modules/about/about.html",
+			templateUrl: "src/_modules/about/about.html",
 		})
 		.when("/contact", {
-			templateUrl: "./src/_modules/contact/contact.html",
-			css: "./src/_modules/contact/contact.css",
+			templateUrl: "src/_modules/contact/contact.html",
+			css: "src/_modules/contact/contact.css",
 		})
 		.when("/feedback", {
-			templateUrl: "./src/_modules/feedback/feedback.html",
-			css: "./src/_modules/feedback/feedback.css",
+			templateUrl: "src/_modules/feedback/feedback.html",
+			css: "src/_modules/feedback/feedback.css",
 		})
 		.when("/question-answer", {
-			templateUrl: "./src/_modules/question-answer/question-answer.html",
-			css: "./src/_modules/question-answer/question-answer.css",
+			templateUrl: "src/_modules/question-answer/question-answer.html",
+			css: "src/_modules/question-answer/question-answer.css",
 		})
 		.when("/quiz/:id", {
-			templateUrl: "./src/_modules/quiz/quiz.html",
-			css: "./src/_modules/quiz/quiz.css",
+			templateUrl: "src/_modules/quiz/quiz.html",
+			css: "src/_modules/quiz/quiz.css",
 		})
 		.when("/login", {
-			templateUrl: "./src/_modules/login/login.html",
-			css: "./src/_modules/login/login.css",
+			templateUrl: "src/_modules/login/login.html",
+			css: "src/_modules/login/login.css",
 		})
 		.when("/register", {
-			templateUrl: "./src/_modules/register/register.html",
-			css: "./src/_modules/register/register.css",
+			templateUrl: "src/_modules/register/register.html",
+			css: "src/_modules/register/register.css",
 		})
 		.when("/account", {
-			templateUrl: "./src/_modules/account/account.html",
-			css: "./src/_modules/account/account.css",
+			templateUrl: "src/_modules/account/account.html",
+			css: "src/_modules/account/account.css",
 		})
 		.when("/change-password", {
-			templateUrl: "./src/_modules/change-password/change-password.html",
-			css: "./src/_modules/change-password/change-password.css",
+			templateUrl: "src/_modules/change-password/change-password.html",
+			css: "src/_modules/change-password/change-password.css",
 		})
 		// .when("/forgot-password", {
-		// 	templateUrl: "./src/_modules/forgot_password/forgot_password.html",
-		// 	css: "./src/_modules/forgot_password/forgot_password.css",
+		// 	templateUrl: "src/_modules/forgot_password/forgot_password.html",
+		// 	css: "src/_modules/forgot_password/forgot_password.css",
 		// })
 		.when("/users", {
-			templateUrl: "./src/admin/users/users.html",
-			css: "./src/admin/users/users.css",
+			templateUrl: "src/admin/users/users.html",
+			css: "src/admin/users/users.css",
 		})
 		.when("/questions", {
-			templateUrl: "./src/admin/questions/questions.html",
-			css: "./src/admin/questions/questions.css",
+			templateUrl: "src/admin/questions/questions.html",
+			css: "src/admin/questions/questions.css",
 		})
 		.when("/subjects", {
-			templateUrl: "./src/admin/subjects/subjects.html",
-			css: "./src/admin/subjects/subjects.css",
+			templateUrl: "src/admin/subjects/subjects.html",
+			css: "src/admin/subjects/subjects.css",
 		})
 		.when("/", {
-			templateUrl: "./src/_modules/dashboard/dashboard.html",
+			templateUrl: "src/_modules/dashboard/dashboard.html",
 		})
 		.otherwise({
 			redirectTo: "/",
