@@ -1,5 +1,9 @@
 <div class="container-fluid p-0" ng-controller="appCtrl">
-	<header ng-include="'./src/_modules/header/header.html'"></header>
+	<header ng-include="'src/_modules/header/header.html'"></header>
 	<ng-view></ng-view>
-	<footer ng-if="!isAdmin" ng-include="'./src/_modules/footer/footer.html'"></footer>
+	<footer
+		ng-if="!isAdmin"
+		ng-include="'src/_modules/footer/footer.html'"
+	></footer>
 </div>
+	
