@@ -3,24 +3,24 @@ app.controller("info_account", ($scope, $http, $window, $rootScope) => {
 	// $scope.user = Object.assign(
 	// 	JSON.parse($window.localStorage.getItem("user"))
 	// );
-	if ($rootScope.current_user.birthday != "")
-		$rootScope.current_user.birthday = new Date(
-			$rootScope.current_user.birthday
-		);
+	$scope.user = angular.copy($rootScope.current_user);
+	console.log('gdsgd',$scope.user);
+	if ($scope.user.birthday != "")
+		$scope.user.birthday = new Date($scope.user.birthday);
 	$scope.saveInfo = (event, form) => {
 		event.preventDefault();
+		console.log($scope.user);
 		if (form.$valid) {
 			$http
-				.put(
-					`${baseUrl}users/${$rootScope.current_user.id}`,
-					$rootScope.current_user
-				)
+				.put(`${baseUrl}users/${$scope.user.id}`, $scope.user)
 				.then((res) => {
+					console.log(res);
 					$window.localStorage.removeItem("user");
 					$window.localStorage.setItem(
 						"user",
-						JSON.stringify($rootScope.current_user)
+						JSON.stringify($scope.user)
 					);
+					$rootScope.current_user = angular.copy($scope.user);
 					{
 						Swal.fire(
 							"",

@@ -1,5 +1,5 @@
-<div class="" ng-include="'./src/_modules/dashboard/slide_banner.html'"></div>
-<div class="container-fluid p-0"  ng-if="!isAdmin">
+<div class="" ng-include="'src/_modules/dashboard/slide_banner.html'"></div>
+<div class="container-fluid p-0" ng-if="!isAdmin">
 	<div
 		class="row col-xxl-10 col-lg-11 col-md-12 content p-auto m-auto pt-5"
 		style="background-color: #f7f3eb"
@@ -19,7 +19,9 @@
 						/>
 					</div>
 					<div class="card-body name-card">
-						<h4 class="text-center">{{subject.Name}}</h4>
+						<h4 class="text-center">
+							{{subject.Name}}
+						</h4>
 					</div>
 				</div>
 			</div>
@@ -75,4 +77,4 @@
 		</aside>
 	</div>
 </div>
-<footer ng-if="isAdmin" ng-include="'./src/_modules/footer/footer.html'"></footer>
+<footer ng-if="isAdmin" ng-include="'src/_modules/footer/footer.html'"></footer>
